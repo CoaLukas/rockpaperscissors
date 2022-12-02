@@ -18,26 +18,33 @@
            else {return "paper";};
          }
          
+
+
+
+         let d = 0;
          function playRound(c){
             const choice = computerChoice();
             if (c == choice){return "draw";}
-            else if (c == "rock" && choice == "paper"){return "you lose!";}
-            else if (c == "rock" && choice == "scissors"){return "you win!";}
-            else if (c == "paper" && choice == "scissors"){return "you lose!";}
-            else if (c == "paper" && choice == "rock"){return "you win!";}
-            else if (c == "scissors" && choice == "paper"){return "you win!";}
-            else if (c == "scissors" && choice == "rock"){return "you lose!";}
+            else if (c == "rock" && choice == "paper"){--d; return "lose"; }
+            else if (c == "rock" && choice == "scissors"){++d; return "win"; }
+            else if (c == "paper" && choice == "scissors"){--d;  return "lose"; }
+            else if (c == "paper" && choice == "rock"){++d; return "win"; }
+            else if (c == "scissors" && choice == "paper"){++d; return "win"; }
+            else if (c == "scissors" && choice == "rock"){--d;  return "lose"; }  
 
          };
 
-         c = prompt("choose", undefined);
          
          
          //program koji pokrece funkciju playRound 5 puta
          
-         function game(){for (let i = 0; i < 5; i++){console.log(playRound(c))}};
+         function game(){for (let i = 0; i < 5; i++){console.log(playRound(c = prompt("choose", undefined))
+         )}};
          game();
-         
+        
+         if (d<0){console.log("you lose!");}
+         else if (d>0){console.log("you win!");}
+         else {console.log("It's a draw!");};
         //i proglasava pobjednika na osnovu rezultata 5 partija
         
      
